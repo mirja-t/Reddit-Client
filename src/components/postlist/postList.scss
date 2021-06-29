@@ -1,0 +1,107 @@
+@import '../../variables.scss';
+
+main {
+    position: relative;
+    padding: $cardpadding;
+    padding-top: $cardpadding*2;
+    padding-bottom: 0;
+    flex-grow: 1;
+    
+    @media screen and (min-width: $layoutswitch){
+        height:100%;
+        overflow: hidden;
+    }
+}
+#postlist-wrapper {
+    @media screen and (min-width: $layoutswitch){
+        height:100%;
+        overflow: scroll;
+    }
+}
+#postlist{
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    align-items: flex-start;
+
+    &:after {
+        content: "";
+        flex: auto;
+      }
+}
+.card-container{
+    z-index: 10;
+    position: fixed;
+    overflow: scroll;
+    height: auto;
+    max-height: 100%;
+    left: 50%!important;
+    transform: translateX(-50%)!important;
+    top: 0;
+    width: 100%;
+
+    @media screen and (min-width: $layoutswitch){
+        position: absolute;
+    }
+    @media screen and (min-width: $breakpoint-xsmall){
+        max-width: 600px;
+    }
+    @media screen and (min-width: $breakpoint-small){
+        max-width: 700px;
+    }
+    @media screen and (min-width: $breakpoint-large){
+        max-width: 800px;
+    }
+    
+}
+
+.btn-close{
+    width: 70px;
+    height: 26px;
+    top: $cardpadding*2;
+    right: $cardpadding*2;
+    position: absolute;
+    cursor: pointer;
+    border: none;
+    background-color: $primary-light;
+    color: $secondary;
+    font-family: $font-family-serif;
+    font-weight: $font-weight-bold;
+    padding: 4px;
+    z-index: 30;
+    transition: background-color .5s ease, color .5s ease;
+    &:hover{
+        background-color: $primary;
+        transition: background-color .5s ease, color .5s ease;
+        
+    }
+
+}
+@keyframes close {
+    from { transform: rotate(0deg) }
+    to { transform: rotate(45deg) }
+}
+@keyframes close-reverse {
+    from { transform: rotate(0deg) }
+    to { transform: rotate(-45deg) }
+}
+svg {
+    margin-left: 5px;
+    #close-btn-stroke1,
+    #close-btn-stroke2{
+        stroke-width: 5px;
+        stroke: $black;
+        transform-origin: center;
+    }
+    &:hover {
+        #close-btn-stroke1 {
+            animation: close .5s ease forwards;
+        }
+        #close-btn-stroke2 {
+            animation: close-reverse .5s ease forwards;
+        }
+    }
+}
+
+
+

@@ -1,12 +1,16 @@
 import React from 'react';
+import './subreddit.scss';
 
-export const Subreddit = ({name, path, active}) => {
-    const classes = active ? 'subreddit active' : 'subreddit';
+export const Subreddit = ({onSubredditChange, name, path, active}) => {
+    const classes = path === active ? 'subreddit active' : 'subreddit';
+    const handleSubredditChange = () => {
+        onSubredditChange(path)
+    }
     return (
         <li className={ classes }>
-            <a href="#">
+            <a onClick={handleSubredditChange} href="#">
                 <span className="subreddit-title">{name}</span>
-                <span>{path}</span>
+                <span className="subreddit-pathname">{path}</span>
             </a>
         </li>
     );

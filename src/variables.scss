@@ -27,10 +27,11 @@ $grid-breakpoints: (
     xxs:    480px,
     xs:     640px,
     s:      768px,
-    m:      1024px,
-    l:      1440px,
-    xl:     1680px,
-    xxl:    1920px
+    m:      992px,
+    l:      1200px,
+    xl:      1440px,
+    xxl:     1680px,
+    xxxl:    1920px
 );
 
 $breakpoint-xxsmall:                            map-get($grid-breakpoints, "xxs");  // iPhone SE 1st gen. portrait
@@ -38,8 +39,9 @@ $breakpoint-xsmall:                             map-get($grid-breakpoints, "xs")
 $breakpoint-small:                              map-get($grid-breakpoints, "s");  // Phone landscape
 $breakpoint-medium:                             map-get($grid-breakpoints, "m");  // Tablet Landscape
 $breakpoint-large:                              map-get($grid-breakpoints, "l"); // Desktop
-$breakpoint-xlarge:                             map-get($grid-breakpoints, "xl"); // Large Screens // 1680
+$breakpoint-xlarge:                             map-get($grid-breakpoints, "xl"); // Large Screens
 $breakpoint-xxlarge:                            map-get($grid-breakpoints, "xxl"); // XLarge Screens
+$breakpoint-xxxlarge:                           map-get($grid-breakpoints, "xxxl"); // XLarge Screens
 
 $grid-breakpoints-max: (
     xxs:    ($breakpoint-xxsmall - 1),
@@ -63,6 +65,8 @@ $base-heading-font-family:                       $font-family-serif;
 $global-font-size:                               16px;
 $global-line-height:                             1.5;
 $base-body-font-weight:                          400;
+$font-weight-medium:                             600;
+$font-weight-bold:                               700;
 
 /* =========================================
                   sizing 
@@ -74,4 +78,12 @@ $sidebar-width: 250px;
                   spacing 
    ========================================= */
 
-$mainpadding: 1rem;
+$mainpadding: 1.5rem;
+$cardpadding: .35rem;
+$cardbodypadding: 1rem;
+
+
+
+//____________________________________ set sidebar to left side
+
+$layoutswitch: $breakpoint-medium;

@@ -1,0 +1,100 @@
+@import '../../../variables.scss';
+
+
+.card{
+    cursor: pointer;
+    transition: all .5s ease;
+    padding: 0 $cardpadding $cardpadding*2;
+    position: relative;
+    z-index: 2;
+    color: $black;
+    transition: width .5s ease, height .5s ease;
+    width: 100%;
+    &::marker{
+        content:'';
+    }
+    @media screen and (min-width: $breakpoint-xsmall){
+        width: 50%;
+    }
+    @media screen and (min-width: $breakpoint-small){
+        width: 33.332%;
+    }
+    @media screen and (min-width: $breakpoint-large){
+        width: 25%;
+    }
+    @media screen and (min-width: $breakpoint-xlarge){
+        width: 20%;
+    }
+    @media screen and (min-width: $breakpoint-xxxlarge){
+        width: 12.5%;
+    }
+    &:hover:not(.card-selected) {
+        z-index: 3;
+    }
+
+    &.card-selected {
+        padding: $cardpadding*2;
+        cursor: default;
+        width: 100%;
+
+    }
+    .card-details {
+        position: relative;
+        color: $black;
+        text-decoration: none;
+        display: block;
+        background-color: $white;
+        transition: all .1s ease;
+    }
+    
+    &:hover:not(.card-selected) {
+
+        .card-details {
+            transform: scale(1.015);
+            box-shadow: 0px 0px 20px rgba(0,0,0,.85);
+            transition: all .1s ease;
+        }
+    }
+    
+    img{
+        width: 100%;
+        height: auto;
+    }
+    .card-body{
+        padding: $cardbodypadding;
+    }
+    .title {
+        margin-bottom: $cardbodypadding;
+    }
+    .author{
+        font-size: .8em;
+        color: $secondary;
+    }
+    .name{
+        font-weight: $font-weight-medium;
+    }
+    .post-author{
+        margin-bottom: 1rem;
+    }
+    .card-footer{
+        margin-top: auto;
+        padding: $cardbodypadding / 2;
+        display: flex;
+        flex-wrap: wrap;
+
+        .comments,
+        .upvotes {
+            margin-right: $cardbodypadding;
+            padding-left: 25px;
+            font-size: .8em;
+            font-weight: $font-weight-medium;
+            color: $secondary;
+        }
+        .comments{
+            background: url('../../../assets/img/icon-comments.svg') left center no-repeat;
+        }
+        .upvotes{
+            background: url('../../../assets/img/icon-likes.svg') left center no-repeat;
+        }
+    }
+}

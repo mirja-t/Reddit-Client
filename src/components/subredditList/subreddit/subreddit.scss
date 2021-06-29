@@ -1,0 +1,84 @@
+@import '../../../variables.scss';
+
+.subredditlist {
+    li {
+        list-style-type: none;
+        position: relative;
+        overflow: hidden;
+        &:last-child {
+            a {
+                border-bottom: 1px solid $primary;
+            }
+        }
+        &:hover,
+        &:focus,
+        &:active,
+        &.active {
+            a {
+                background-position: 0% 50%;
+                transition: background-position 1s ease,
+                border-color 1s ease;
+                border-color: transparent;
+
+                span {
+                    transform: translateX(1rem);
+                    transition: transform .5s ease;
+                }
+
+                &::before {
+                    transform: translateY(0);
+                    transition: all .25s ease;
+                }
+            }
+        }
+    }
+    a {
+        position: relative;
+        padding: .75rem 1rem .75rem 0;
+        color: $primary-light;
+        text-decoration: none;
+        display: block;
+        border-top: 1px solid $primary;
+        background: linear-gradient(90deg, rgba(61,73,74,1) 0%, rgba(61,73,74,1) 33%, rgba(44,56,57,1) 66%, rgba(44,56,57,1) 100%);
+        background-size: 300% 300%;
+        background-position: 100% 50%;
+        transition: background-position .5s ease,
+        border-color 1s ease;
+        
+        span {
+            transform: translateX(0);
+            transition: transform .25s ease;
+        }
+        &::before {
+            content: '';
+            display: block;
+            width: 5px;
+            height: calc(100% + 2px);
+            background-color: $primary;
+            position: absolute;
+            left: 0;
+            top: -1px;
+            transform: translateY(-101%);
+            transition: all .25s ease;
+        }
+        
+    }
+
+    li:hover + li a,
+    li:focus + li a,
+    li:active + li a,
+    li.active + li a {
+        border-top-color: transparent;
+    }
+    span {
+        display: block;
+    }
+    .subreddit-title {
+        font-family: $font-family-serif;
+        font-weight: 700;
+        padding-bottom: .05rem;
+    }
+    .subreddit-pathname {
+        font-size: .85em;
+    }
+}
