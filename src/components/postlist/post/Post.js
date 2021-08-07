@@ -34,7 +34,7 @@ export const Post = ({setGrid, selectPost, selected, post, subredditPath, index,
             console.log('set translate')
             setTranslateY({ 'transform': `translateY(-${offset.translateY}px)` })
         }
-    },[])
+    },[offset])
 
     return (
     <li className={cardClasses} onClick={handleClick} ref={cardRef} style={ translateY }>

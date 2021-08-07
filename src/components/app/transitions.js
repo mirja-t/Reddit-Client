@@ -7,8 +7,7 @@ export const cardTransition = {
         scale: 1, 
         opacity: 1, 
         transition: {
-            duration: .35, 
-            delay: .3
+            duration: .35
         }
     },
     exit: {

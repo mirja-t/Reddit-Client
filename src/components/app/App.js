@@ -1,22 +1,18 @@
 import './App.scss';
 import React, { useState } from 'react';
-import {PostList} from '../postlist/PostList';
-import {SubredditList} from '../subredditList/SubredditList.js';
+import { useSelector } from 'react-redux';
+import { selectSubreddit } from './AppSlice.js';
+import { PostList } from '../postlist/PostList';
+import { SubredditList } from '../subredditList/SubredditList.js';
 
 
 function App() {
 
-  const [subreddit, setSubreddit] = useState('r/DesignPorn');
-
-  const onSubredditChange = (subredditPath) => {
-    setSubreddit(subredditPath)
-  }
+  const subreddit = useSelector(selectSubreddit);
 
   return (
     <div id="wrapper">
-      <SubredditList 
-        onSubredditChange={onSubredditChange}
-        subredditPath={subreddit}/>
+      <SubredditList/>
       <PostList subredditPath={subreddit}/>
     </div>
   );

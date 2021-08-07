@@ -56,11 +56,11 @@ export const setHeight = (el, obj) => {
         const prevOffset = index - cols >=0 ? offsets[index-cols] : 0;
         colheights[index % cols] = offset + prevOffset;
     });
+    console.log(Math.max(...colheights))
     return Math.max(...colheights);
 }
-export const initGrid = (el, obj) => {
+export const translateCards = (el, obj) => {
     /* Set card translation for masonry layout */
     setTranslationValues(el, obj);
-    console.log(cardConfig[3]);
     return cardConfig;
 }

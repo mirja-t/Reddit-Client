@@ -4,7 +4,8 @@ import './postList.scss';
 import { getSubredditData } from '../../utils/reddit';
 import { AnimatePresence, motion } from "framer-motion";
 import {cardTransition, buttonTransition, bgTransition} from '../app/transitions';
-import {initGrid, setHeight} from '../../utils/grid/grid';
+import {translateCards, setHeight} from '../../utils/grid/grid';
+import {debounce} from '../../utils/debounce';
 
 export const PostList = ({subredditPath}) => {
 
@@ -14,23 +15,13 @@ export const PostList = ({subredditPath}) => {
     const gridContainer = useRef(null);
     const [offsets, setOffsets] = useState({});
     const [containerHeight, setContainerHeight] = useState();
+    const [gridLoaded, setGridLoaded] = useState(0);
+    const [resizeEvent, setResizeEvent] = useState(0);
 
     const grid = {};
     const setGrid = (obj, index) => {
         grid[index] = obj;
     }
-
-    useEffect(()=> {
-        
-        if(grid[0] !== undefined) {
-            console.log('init grid', grid[3])
-            setOffsets(initGrid(gridContainer.current, grid));
-            setContainerHeight({'height': setHeight(gridContainer.current, grid) + 'px'})
-        }
-        return () => {
-
-        }
-    },[posts, offsets])
 
     const loadData = (subredditPath) => {
         getSubredditData(subredditPath).then(response => {
@@ -38,13 +29,41 @@ export const PostList = ({subredditPath}) => {
         });
     }
 
+    const selectPost = (id) => {
+        setSelectedId(id);
+    }
+
+    const initGrid = () => {
+        console.log('initGrid:', grid[0]?.id);
+        if(grid[0] !== undefined) {
+            console.log('init grid', grid[3].width)
+            setOffsets(translateCards(gridContainer.current, grid));
+            setGridLoaded(gridLoaded + 1);
+        }
+    }
+    const resizeGrid = debounce(initGrid, 500);
+
+    const resizeListener = () => {
+        console.log('resizeListener')
+        resizeGrid();
+    }
+
+    useEffect(()=> {
+        initGrid();
+    },[posts])
+
+    useEffect(()=>{
+        
+        window.addEventListener('resize', resizeListener);
+        return () => {
+            window.removeEventListener('resize', resizeListener);
+        }
+    },[])
+
     useEffect(() => {
         loadData(subredditPath);
     }, [subredditPath]);
 
-    const selectPost = (id) => {
-        setSelectedId(id);
-    }
 
     return (
     <>

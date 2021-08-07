@@ -10,7 +10,37 @@ aside {
         height: 100%;
         overflow: scroll;
     }
+    @media screen and (max-width: $layoutswitch-max){
+        h2{
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+    }
 }
 .subredditlist {
     margin-top: 2rem;
+    @media (max-width: $layoutswitch){
+        position: relative;
+        &::before{
+            position: absolute;
+            content:'';
+            right: 1rem;
+            top: 1.25rem;
+            width: 0; 
+            height: 0; 
+            border-left: .4rem solid transparent;
+            border-right: .4rem solid transparent;
+            border-top: .4rem solid $primary;
+            z-index:1;
+        }
+        height: 3rem;
+        overflow: hidden;
+        max-width: 300px;
+        margin: auto;
+        transition: all 1s ease;
+        &.open{
+            height: 27rem;
+            transition: all 1s ease;
+        }
+    }
 }

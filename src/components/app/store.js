@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { postListSlice } from '../postlist/postListSlice';
+import appReducer from "./AppSlice";
 
 export default configureStore({
     reducer: {
-        postList: postListSlice
+        app: appReducer
     },
-  });
+});

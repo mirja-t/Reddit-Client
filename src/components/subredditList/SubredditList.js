@@ -3,7 +3,7 @@ import React from 'react';
 import {Subreddit} from './subreddit/Subreddit.js';
 import './subredditList.scss';
 
-export const SubredditList = ({subredditPath, onSubredditChange}) => {
+export const SubredditList = () => {
 
   
       const subreddits = [
@@ -26,8 +26,6 @@ export const SubredditList = ({subredditPath, onSubredditChange}) => {
               key={subreddit.path} 
               name={subreddit.name} 
               path={subreddit.path}
-              onSubredditChange={onSubredditChange}
-              active={subredditPath}
             />
           ))}
         </ul>

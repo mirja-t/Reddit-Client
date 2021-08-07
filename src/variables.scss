@@ -53,6 +53,15 @@ $grid-breakpoints-max: (
     xxl:    ($breakpoint-xxlarge - 1)
 );
 
+$breakpoint-xxsmall-max:                            map-get($grid-breakpoints-max, "xxs");  // iPhone SE 1st gen. portrait
+$breakpoint-xsmall-max:                             map-get($grid-breakpoints-max, "xs");  // Phone portrait
+$breakpoint-small-max:                              map-get($grid-breakpoints-max, "s");  // Phone landscape
+$breakpoint-medium-max:                             map-get($grid-breakpoints-max, "m");  // Tablet Landscape
+$breakpoint-large-max:                              map-get($grid-breakpoints-max, "l"); // Desktop
+$breakpoint-xlarge-max:                             map-get($grid-breakpoints-max, "xl"); // Large Screens
+$breakpoint-xxlarge-max:                            map-get($grid-breakpoints-max, "xxl"); // XLarge Screens
+$breakpoint-xxxlarge-max:                           map-get($grid-breakpoints-max, "xxxl"); // XLarge Screens
+
 /* =========================================
                   typography 
    ========================================= */
@@ -87,3 +96,4 @@ $cardbodypadding: 1rem;
 //____________________________________ set sidebar to left side
 
 $layoutswitch: $breakpoint-medium;
+$layoutswitch-max: $breakpoint-medium-max;

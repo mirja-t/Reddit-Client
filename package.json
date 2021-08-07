@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@offensichtbar-codestock/es6-flex-masonry-grid": "^1.1.3",
-    "@reduxjs/toolkit": "^1.6.0",
+    "@reduxjs/toolkit": "^1.6.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
