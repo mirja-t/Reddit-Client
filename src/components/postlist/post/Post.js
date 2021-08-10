@@ -1,7 +1,8 @@
 import './post.scss';
 import React, {
     useState, 
-    useEffect
+    useEffect,
+    useCallback
 } from 'react';
 import { 
     useSelector, 
@@ -52,6 +53,16 @@ export const Post = ({selected, post, subredditPath, index}) => {
         }
         !selected && dispatch(initCard(card))
     }
+    /*
+    const reInitCard = useCallback(() => {
+        if (!node) return null;
+        const card = {
+            id: index,
+            width: node.getBoundingClientRect().width,
+            height: node.getBoundingClientRect().height
+        }
+        !selected && dispatch(initCard(card))
+    }, []);*/
 
     const [node, setRef] = useState(null);
     useEffect(() => {
@@ -70,7 +81,7 @@ export const Post = ({selected, post, subredditPath, index}) => {
           // remove resize listener
           window.removeEventListener('resize', resizeListener);
         }
-    }, [node, dispatch, index, reInitCard, selected]);
+    }, [node, dispatch, index, selected]);
 
     
 
