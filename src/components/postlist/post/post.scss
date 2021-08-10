@@ -33,7 +33,7 @@
     }
 
     &.card-selected {
-        padding: $cardpadding*2;
+        padding: 0;
         cursor: default;
         width: 100%;
 
@@ -56,19 +56,26 @@
         }
     }
     
-    img{
+    img,
+    video {
         width: 100%;
         height: auto;
     }
     .card-body{
         padding: $cardbodypadding;
+        a {
+            color: $primary;
+            margin-bottom: 1rem;
+            display: block;
+            word-break: break-all;
+        }
     }
     .title {
         margin-bottom: $cardbodypadding;
     }
     .author{
-        font-size: .8em;
-        color: $secondary;
+        font-size: .85em;
+        color: $primary;
     }
     .name{
         font-weight: $font-weight-medium;
@@ -95,6 +102,54 @@
         }
         .upvotes{
             background: url('../../../assets/img/icon-likes.svg') left center no-repeat;
+        }
+    }
+}
+
+
+
+.btn-close{
+    width: 70px;
+    height: 26px;
+    top: 0;
+    right: 0;
+    position: absolute;
+    cursor: pointer;
+    border: none;
+    background-color: $primary-light;
+    color: $secondary;
+    font-family: $font-family-serif;
+    font-weight: $font-weight-bold;
+    padding: 4px;
+    z-index: 30;
+    transition: background-color .5s ease, color .5s ease;
+    &:hover{
+        background-color: $primary;
+        transition: background-color .5s ease, color .5s ease;
+    }
+}
+@keyframes close {
+    from { transform: rotate(0deg) }
+    to { transform: rotate(45deg) }
+}
+@keyframes close-reverse {
+    from { transform: rotate(0deg) }
+    to { transform: rotate(-45deg) }
+}
+svg {
+    margin-left: 5px;
+    #close-btn-stroke1,
+    #close-btn-stroke2{
+        stroke-width: 5px;
+        stroke: $black;
+        transform-origin: center;
+    }
+    &:hover {
+        #close-btn-stroke1 {
+            animation: close .5s ease forwards;
+        }
+        #close-btn-stroke2 {
+            animation: close-reverse .5s ease forwards;
         }
     }
 }

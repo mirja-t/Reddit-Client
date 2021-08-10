@@ -13,7 +13,6 @@ export const CommentList = ({postId, subredditPath}) => {
     }
 
     useEffect(() => {
-        console.log('CommentList:',postId, subredditPath)
         getComments(postId, subredditPath);
     }, []);
     

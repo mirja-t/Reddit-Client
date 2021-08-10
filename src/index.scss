@@ -1,6 +1,7 @@
 @import './assets/fonts/webfonts.scss';
 @import './variables.scss';
 
+
 body {
     font-family: $global-font-family;
     -webkit-font-smoothing: antialiased;
@@ -15,4 +16,53 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+
+// CUSTOM SCROLLBAR OVERWRITE
+.simplebar-scrollbar:before{
+  background: $primary!important;
+  border-radius: 0!important;
+}
+.simplebar-track.simplebar-vertical{
+  width: 9px!important;
+}
+
+// ERROR
+.error{
+  text-align: center;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  > div {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+  }
+}
+
+
+// STYLED SCROLLBAR
+
+body::-webkit-scrollbar {
+  width: 7px;
+}
+body {
+  scrollbar-width: thin;
+  scrollbar-color: $primary $secondary;
+}
+body::-webkit-scrollbar-track {
+  background: $secondary;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: $secondary;
+  border-radius: 0;
+  border: 3px solid $secondary;
 }

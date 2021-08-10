@@ -1,78 +1,75 @@
-import React, {useRef, useEffect, useState} from 'react';
-import {Post} from './post/Post.js';
+
 import './postList.scss';
-import { getSubredditData } from '../../utils/reddit';
-import { AnimatePresence, motion } from "framer-motion";
-import {cardTransition, buttonTransition, bgTransition} from '../app/transitions';
-import {translateCards, setHeight} from '../../utils/grid/grid';
-import {debounce} from '../../utils/debounce';
+import {
+    useRef, 
+    useEffect, 
+    useState
+} from 'react';
+import { 
+    useSelector, 
+    useDispatch 
+} from 'react-redux';
+import { 
+    selectSubreddit 
+} from '../app/AppSlice';
+import { 
+    selectPosts,
+    loadPosts,
+    getSelectedId
+} from './postListSlice';
+import { 
+    selectGrid, 
+    resetGrid, 
+    setOffsets 
+} from './postListSlice';
+import { Post } from './post/Post.js';
+import { Loader } from '../stateless/loader/Loader';
+import { 
+    AnimatePresence, 
+    motion 
+} from "framer-motion";
+import { 
+    cardTransition, 
+    bgTransition
+} from '../app/transitions';
+import {translateCards} from '../../utils/grid/grid';
 
-export const PostList = ({subredditPath}) => {
+export const PostList = () => {
 
-    const [posts, setPosts] = useState([]);
-    const [selectedId, setSelectedId] = useState(null);
+    const dispatch = useDispatch();
+    const subreddit = useSelector(selectSubreddit);
+    const selectedId = useSelector(getSelectedId);
+    const postList = useSelector(selectPosts);
+
+    const posts = postList.posts;
     const selectedPost = posts.find(post => post.id === selectedId);
     const gridContainer = useRef(null);
-    const [offsets, setOffsets] = useState({});
     const [containerHeight, setContainerHeight] = useState();
-    const [gridLoaded, setGridLoaded] = useState(0);
-    const [resizeEvent, setResizeEvent] = useState(0);
 
-    const grid = {};
-    const setGrid = (obj, index) => {
-        grid[index] = obj;
-    }
-
-    const loadData = (subredditPath) => {
-        getSubredditData(subredditPath).then(response => {
-            setPosts(response);
-        });
-    }
-
-    const selectPost = (id) => {
-        setSelectedId(id);
-    }
-
-    const initGrid = () => {
-        console.log('initGrid:', grid[0]?.id);
-        if(grid[0] !== undefined) {
-            console.log('init grid', grid[3].width)
-            setOffsets(translateCards(gridContainer.current, grid));
-            setGridLoaded(gridLoaded + 1);
-        }
-    }
-    const resizeGrid = debounce(initGrid, 500);
-
-    const resizeListener = () => {
-        console.log('resizeListener')
-        resizeGrid();
-    }
-
-    useEffect(()=> {
-        initGrid();
-    },[posts])
-
-    useEffect(()=>{
-        
-        window.addEventListener('resize', resizeListener);
-        return () => {
-            window.removeEventListener('resize', resizeListener);
-        }
-    },[])
+    const grid = useSelector(selectGrid);
 
     useEffect(() => {
-        loadData(subredditPath);
-    }, [subredditPath]);
+        dispatch(loadPosts(subreddit));
+        dispatch(resetGrid)
+    }, [subreddit]);
 
+    useEffect(() => {
+        if(grid.length <= 0 || postList.isLoading || postList.hasError) return
+        const offsets = translateCards(gridContainer.current, grid)
+        dispatch(setOffsets(offsets));
+    }, [grid]);
+
+    if(postList.isLoading) return (<Loader/>)
+    if(postList.hasError) return (<div className="error"><div><h3 className="primary">Da hat wohl jemand Rotz gecoded :-(</h3></div></div>)
 
     return (
     <>
-        <main>{
+        <main>
             <AnimatePresence>
                 {selectedId && (
                     
-                    <motion.div 
-                        class='card-container'
+                    <motion.ul 
+                        className='card-container'
                         key={selectedId} 
                         layoutId={selectedId}
                         variants={cardTransition}
@@ -81,40 +78,29 @@ export const PostList = ({subredditPath}) => {
                         exit={'exit'}
                         transition={'transition'}
                         >
-                        <motion.button 
-                            onClick={() => setSelectedId(null)} 
-                            className="btn-close"
-                            variants={buttonTransition}
-                        >close
-                            <svg version="1.1" width="10" height="10" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 20 20">
-                                <line id="close-btn-stroke1" x1="2.78" y1="17.22" x2="17.22" y2="2.78"/>
-                                <line id="close-btn-stroke2" x1="2.78" y1="2.78" x2="17.22" y2="17.22"/>
-                            </svg>
-                        </motion.button>
                         <Post 
                             post={selectedPost} 
-                            subredditPath={subredditPath}
+                            subredditPath={subreddit}
                             selected={true}/>
-                    </motion.div>
+                    </motion.ul>
                 )}
-            </AnimatePresence>}
-
+            </AnimatePresence>
+            
             <div id="postlist-wrapper" style={containerHeight}>
-                <ul id="postlist" ref={gridContainer}>
-                    {posts.map((post, index) => (
-
-                        <Post 
-                            post={post} 
-                            key={post.id} 
-                            index={index}
-                            selectPost={selectPost}
-                            selected={false}
-                            setGrid={setGrid}
-                            offset={offsets[index]}
-                        />)
-                    )}
-                </ul>
+                    <ul id="postlist" ref={gridContainer}>
+                        {posts.map((post, index) => (
+                            
+                            <Post 
+                                post={post} 
+                                key={post.id} 
+                                index={index}
+                                selected={false} />
+                            )
+                        )}
+                    </ul>
             </div>
+            
+            
             
         </main>
 

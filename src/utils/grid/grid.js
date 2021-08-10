@@ -1,11 +1,11 @@
 
-const cardConfig = {}
+const cardConfig = []
 
 const getCols = (el, obj) => {
     return Math.round(el.offsetWidth / obj[0].width); 
 }
 
-const getCardAmount = obj => Object.keys(obj).length;
+const getCardAmount = obj => obj.length;
 
 const getRowHeights = (el, obj) => {
     const cols = getCols(el, obj);
@@ -16,6 +16,7 @@ const getRowHeights = (el, obj) => {
     for(let row = 0; row < rows; row++) {
         cardsArr[row] = [];
     }
+    
     for(let card = 0; card < cardsAmount; card++) {
         cardsArr[Math.floor(card / cols)].push(obj[card].height);
     }
@@ -56,9 +57,14 @@ export const setHeight = (el, obj) => {
         const prevOffset = index - cols >=0 ? offsets[index-cols] : 0;
         colheights[index % cols] = offset + prevOffset;
     });
-    console.log(Math.max(...colheights))
     return Math.max(...colheights);
 }
+/**
+ * 
+ * @param {node} el – ref representing list element <ul>
+ * @param {Object} obj - object representing heights
+ * @returns 
+ */
 export const translateCards = (el, obj) => {
     /* Set card translation for masonry layout */
     setTranslationValues(el, obj);

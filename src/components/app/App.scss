@@ -1,19 +1,32 @@
 @import '../../variables.scss';
 
+
+
+
 html,
 body,
 #root,
 #wrapper {
     height: 100%;
+    width: 100%;
+}
+@media (min-width: $layoutswitch){
+    #root{
+        position: fixed;
+    }
 }
 
 h1,
 h2,
 h3,
 h4,
-h5,
 h6 {
     font-family: $font-family-serif;
+    line-height: 1.35;
+}
+h5{
+    font-family: $font-family-sans-serif;
+    font-weight: 400;
     line-height: 1.35;
 }
 @for $i from 1 through 6 {
@@ -40,3 +53,7 @@ h6 {
     left: 0;
     top: 0;
 }
+.primary {
+    color: $primary;
+}
+

@@ -23,9 +23,10 @@
             position: relative;
             overflow: hidden;
             height: auto;
+            transform: translateY(0%)!important;
             &:last-child {
                 a {
-                    border-bottom: 1px solid $primary;
+                    border-bottom: 1px solid rgba($primary, 0.5);
                 }
             }
             &:hover,
@@ -33,8 +34,8 @@
             &:active,
             &.active {
                 a {
-                    background-position: 0% 50%;
-                    transition: background-position 1s ease,
+                    background-position: 50% 50%;
+                    transition: background-position .25s ease,
                     border-color 1s ease;
                     border-color: transparent;
 
@@ -44,7 +45,7 @@
                     }
 
                     &::before {
-                        transform: translateY(0);
+                        top: 0%;
                         transition: all .25s ease;
                     }
                 }
@@ -52,32 +53,29 @@
         }
         a {
             position: relative;
-            padding: .75rem 1rem .75rem 0;
+            padding: 1rem 1rem 1rem 0;
             color: $primary-light;
-            border-top: 1px solid $primary;
+            border-top: 1px solid rgba($primary, 0.5);
             background: linear-gradient(90deg, rgba(61,73,74,1) 0%, rgba(61,73,74,1) 33%, rgba(44,56,57,1) 66%, rgba(44,56,57,1) 100%);
             background-size: 300% 300%;
             background-position: 100% 50%;
-            transition: background-position .5s ease,
+            transition: background-position .25s ease,
             border-color 1s ease;
             
             span {
                 transform: translateX(0);
                 transition: transform .25s ease;
             }
-            @media (min-width: $layoutswitch){
-                &::before {
-                    content: '';
-                    display: block;
-                    width: 5px;
-                    height: calc(100% + 2px);
-                    background-color: $primary;
-                    position: absolute;
-                    left: 0;
-                    top: -1px;
-                    transform: translateY(-101%);
-                    transition: all .25s ease;
-                }
+            &::before {
+                content: '';
+                display: block;
+                width: 5px;
+                height: calc(100% + 2px);
+                background-color: $primary;
+                position: absolute;
+                left: 0;
+                top: calc( 100% + 1px );
+                transition: all .25s ease;
             }
             
         }
@@ -97,7 +95,7 @@
             padding-bottom: .05rem;
         }
         .subreddit-pathname {
-            font-size: .85em;
+            font-size: .8em;
         }
     }
 
@@ -107,6 +105,7 @@
             background-color: $primary-light;
             height: 3rem;
             border-bottom: 1px solid $primary;
+            transition: transform .5s ease;
             &:last-child{
                 border-bottom: none;
             }

@@ -1,19 +1,12 @@
 import './App.scss';
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { selectSubreddit } from './AppSlice.js';
 import { PostList } from '../postlist/PostList';
-import { SubredditList } from '../subredditList/SubredditList.js';
-
+import { Sidebar } from '../stateless/sidebar/Sidebar';
 
 function App() {
-
-  const subreddit = useSelector(selectSubreddit);
-
   return (
     <div id="wrapper">
-      <SubredditList/>
-      <PostList subredditPath={subreddit}/>
+      <Sidebar/>
+      <PostList/>
     </div>
   );
 }

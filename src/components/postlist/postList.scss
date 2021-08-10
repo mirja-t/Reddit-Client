@@ -2,13 +2,13 @@
 
 main {
     position: relative;
-    padding: $cardpadding;
-    padding-top: $cardpadding*2;
+    padding: $cardpadding*2 0 0 0;
     padding-bottom: 0;
     flex-grow: 1;
     
     @media screen and (min-width: $layoutswitch){
         height:100%;
+        padding-right: $cardpadding;
         overflow: hidden;
     }
 }
@@ -23,6 +23,9 @@ main {
     flex-wrap: wrap;
     list-style-type: none;
     align-items: flex-start;
+    @media screen and (min-width: $layoutswitch){
+        padding-right: $cardbodypadding;
+    }
 
     &:after {
         content: "";
@@ -55,53 +58,6 @@ main {
     
 }
 
-.btn-close{
-    width: 70px;
-    height: 26px;
-    top: $cardpadding*2;
-    right: $cardpadding*2;
-    position: absolute;
-    cursor: pointer;
-    border: none;
-    background-color: $primary-light;
-    color: $secondary;
-    font-family: $font-family-serif;
-    font-weight: $font-weight-bold;
-    padding: 4px;
-    z-index: 30;
-    transition: background-color .5s ease, color .5s ease;
-    &:hover{
-        background-color: $primary;
-        transition: background-color .5s ease, color .5s ease;
-        
-    }
-
-}
-@keyframes close {
-    from { transform: rotate(0deg) }
-    to { transform: rotate(45deg) }
-}
-@keyframes close-reverse {
-    from { transform: rotate(0deg) }
-    to { transform: rotate(-45deg) }
-}
-svg {
-    margin-left: 5px;
-    #close-btn-stroke1,
-    #close-btn-stroke2{
-        stroke-width: 5px;
-        stroke: $black;
-        transform-origin: center;
-    }
-    &:hover {
-        #close-btn-stroke1 {
-            animation: close .5s ease forwards;
-        }
-        #close-btn-stroke2 {
-            animation: close-reverse .5s ease forwards;
-        }
-    }
-}
 
 
 

@@ -1,16 +1,16 @@
-import React from 'react';
 import './subreddit.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { setSubreddit, selectSubreddit } from '../../app/AppSlice';
+import { useDispatch } from 'react-redux';
+import { setSubreddit } from '../../app/AppSlice';
 
-export const Subreddit = ({name, path}) => {
+export const Subreddit = ({name, path, active, style}) => {
 
     const dispatch = useDispatch();
-    const currentPath = useSelector(selectSubreddit);
-    const classes = path === currentPath ? 'subreddit active' : 'subreddit';
-
+    const classes = path === active ? 'subreddit active' : 'subreddit';
+    
     return (
-        <li className={ classes }>
+        <li 
+            className={ classes }
+            style={ style }>
             <a onClick={ ()=>{ dispatch(setSubreddit(path)) }} href="#">
                 <span className="subreddit-title">{name}</span>
                 <span className="subreddit-pathname">{path}</span>
