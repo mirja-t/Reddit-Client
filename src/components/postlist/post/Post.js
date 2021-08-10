@@ -80,7 +80,7 @@ export const Post = ({selected, post, subredditPath, index}) => {
           window.removeEventListener('resize', resizeListener);
         }
 
-    },[node, dispatch, index, post.preview]);
+    },[node, dispatch, index, post.preview, selected]);
 
     
 
