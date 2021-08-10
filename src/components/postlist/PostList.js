@@ -62,13 +62,13 @@ export const PostList = () => {
         if(grid.length <= 0 || postList.isLoading || postList.hasError) return
         const offsets = translateCards(gridContainer.current, grid)
         dispatch(setOffsets(offsets));
-    }, [grid, dispatch]);
+    }, [grid, dispatch, postList.hasError, postList.isLoading]);
 
     useEffect(()=>{
         if(grid.length <= 0 || postList.isLoading || postList.hasError) return
         const containerHght = setHeight(gridContainer.current, grid);
         setContainerHeight(containerHght);
-    },[offsetList]);
+    },[offsetList, grid, postList.hasError, postList.isLoading]);
 
     if(postList.isLoading) return (<Loader/>)
     if(postList.hasError) return (<div className="error"><div><h3 className="primary">Da hat wohl jemand Rotz gecoded :-(</h3></div></div>)

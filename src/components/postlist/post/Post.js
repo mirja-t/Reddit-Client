@@ -60,7 +60,7 @@ export const Post = ({selected, post, subredditPath, index}) => {
           // remove resize listener
           window.removeEventListener('resize', resizeListener);
         }
-    }, [node]);
+    }, [node, dispatch, index, reInitCard, selected]);
 
     const reInitCard = () => {
         if (!node) return null;
