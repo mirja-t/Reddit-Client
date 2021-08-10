@@ -36,7 +36,7 @@ export const Post = ({selected, post, subredditPath, index}) => {
     const postTitle = post.title ? post.title : '';
     const imgRegEx = /(.jpg|.gif$|.jpeg|.png|.webp)/;
     const isImg = imgRegEx.test(post.url);
-    const urlRegEx = /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n\?\=]+)/;
+    const urlRegEx = /https?:\/\/\w{0,3}\.?\w+\.\w+/;
     const url = post.url.match(urlRegEx);
     const fileRegEx = /(.*)\?width=/;
     const strRegEx = /s=(.*)/;
@@ -56,6 +56,7 @@ export const Post = ({selected, post, subredditPath, index}) => {
 
     const [node, setRef] = useState(null);
     useEffect(() => {
+        console.log(post.preview)
         if (!node) return null;
         const card = {
             id: index,
@@ -63,7 +64,15 @@ export const Post = ({selected, post, subredditPath, index}) => {
             height: node.getBoundingClientRect().height
         }
         !selected && dispatch(initCard(card));
-        const resizeListener = debounce(reInitCard, 500);
+        const resizeListener = debounce(()=>{
+            if (!node) return null;
+            const card = {
+                id: index,
+                width: node.getBoundingClientRect().width,
+                height: node.getBoundingClientRect().height
+            }
+            !selected && dispatch(initCard(card))
+        }, 500);
         // set resize listener
         window.addEventListener('resize', resizeListener);
         // clean up function
@@ -71,7 +80,8 @@ export const Post = ({selected, post, subredditPath, index}) => {
           // remove resize listener
           window.removeEventListener('resize', resizeListener);
         }
-    }, [node, dispatch, index, selected]);
+
+    },[node]);
 
     
 
@@ -119,7 +129,7 @@ export const Post = ({selected, post, subredditPath, index}) => {
                 
                 <div className='card-body'>
                     { !post.video_url && !isImg && post?.url && (
-                        <a href={post.url} title={post.url}>{ url }</a>
+                        <a href={post.url} title={post.url}>{ url+'...' }</a>
                     )}
                     <p className="post-author author">Posted by <span className="name">{post.author}</span> {formatDate(post.created_utc)} ago</p>
                     <h2 className="title">{ selected ? postTitle : shortenTitle(postTitle, 50)}</h2>
