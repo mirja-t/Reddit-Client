@@ -53,16 +53,6 @@ export const Post = ({selected, post, subredditPath, index}) => {
         }
         !selected && dispatch(initCard(card))
     }
-    /*
-    const reInitCard = useCallback(() => {
-        if (!node) return null;
-        const card = {
-            id: index,
-            width: node.getBoundingClientRect().width,
-            height: node.getBoundingClientRect().height
-        }
-        !selected && dispatch(initCard(card))
-    }, []);*/
 
     const [node, setRef] = useState(null);
     useEffect(() => {
