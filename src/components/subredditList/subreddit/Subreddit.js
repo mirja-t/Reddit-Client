@@ -11,10 +11,12 @@ export const Subreddit = ({name, path, active, style}) => {
         <li 
             className={ classes }
             style={ style }>
-            <a onClick={ ()=>{ dispatch(setSubreddit(path)) }} href="#">
+            <div 
+                onClick={ ()=>{ dispatch(setSubreddit(path)) }}
+                className="link">
                 <span className="subreddit-title">{name}</span>
                 <span className="subreddit-pathname">{path}</span>
-            </a>
+            </div>
         </li>
     );
 }

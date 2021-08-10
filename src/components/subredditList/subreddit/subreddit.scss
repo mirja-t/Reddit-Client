@@ -7,10 +7,11 @@
         &:last-child{
             border-bottom: none;
         }
-        a {
+       .link{
             position: relative;
             text-decoration: none;
             display: block;
+            cursor: pointer;
         }
         .subreddit-title {
             font-family: $font-family-serif;
@@ -25,7 +26,7 @@
             height: auto;
             transform: translateY(0%)!important;
             &:last-child {
-                a {
+               .link{
                     border-bottom: 1px solid rgba($primary, 0.5);
                 }
             }
@@ -33,7 +34,7 @@
             &:focus,
             &:active,
             &.active {
-                a {
+               .link{
                     background-position: 50% 50%;
                     transition: background-position .25s ease,
                     border-color 1s ease;
@@ -51,7 +52,7 @@
                 }
             }
         }
-        a {
+       .link{
             position: relative;
             padding: 1rem 1rem 1rem 0;
             color: $primary-light;
@@ -59,7 +60,7 @@
             background: linear-gradient(90deg, rgba(61,73,74,1) 0%, rgba(61,73,74,1) 33%, rgba(44,56,57,1) 66%, rgba(44,56,57,1) 100%);
             background-size: 300% 300%;
             background-position: 100% 50%;
-            transition: background-position .25s ease,
+            transition: background-position 1s ease,
             border-color 1s ease;
             
             span {
@@ -80,10 +81,10 @@
             
         }
 
-        li:hover + li a,
-        li:focus + li a,
-        li:active + li a,
-        li.active + li a {
+        li:hover + li .link,
+        li:focus + li .link,
+        li:active + li .link,
+        li.active + li .link{
             border-top-color: transparent;
         }
         span {
@@ -109,7 +110,7 @@
             &:last-child{
                 border-bottom: none;
             }
-            a {
+           .link{
                 color: $secondary;
                 height: 100%;
                 span{

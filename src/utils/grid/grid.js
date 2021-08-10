@@ -49,14 +49,24 @@ const setTranslationValues = (el, obj) => {
         cardConfig[index] = { translateY: offset };
     })
 }
+/**
+ * 
+ * @param {node} el – ref representing list element <ul>
+ * @param {Object} obj - object representing heights
+ * @returns 
+ */
 export const setHeight = (el, obj) => {
-    const offsets = setOffsets(el, obj);
     const cols = getCols(el, obj);
+    const cardsAmount = getCardAmount(obj);
+    const rows = Math.ceil(cardsAmount / cols );
     const colheights = [];
-    offsets.forEach((offset, index) => {
-        const prevOffset = index - cols >=0 ? offsets[index-cols] : 0;
-        colheights[index % cols] = offset + prevOffset;
-    });
+    for(let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+            const curr = obj[j*cols+i] ? obj[j*cols+i].height : 0;
+            const prev = colheights[i] || 0;
+            colheights[i] = curr + prev;
+        }
+    }
     return Math.max(...colheights);
 }
 /**

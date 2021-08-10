@@ -14,7 +14,7 @@ export const CommentList = ({postId, subredditPath}) => {
 
     useEffect(() => {
         getComments(postId, subredditPath);
-    }, []);
+    }, [postId, subredditPath]);
     
     return (<div className="card-body comment-list">
         {comments.length > 0 && (<h5>Comments</h5>)}

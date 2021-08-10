@@ -8,7 +8,6 @@ import {
     useDispatch 
 } from 'react-redux';
 import { 
-    AnimatePresence, 
     motion 
 } from "framer-motion";
 import { buttonTransition } from '../../app/transitions';
