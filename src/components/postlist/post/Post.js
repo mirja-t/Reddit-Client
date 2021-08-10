@@ -43,6 +43,16 @@ export const Post = ({selected, post, subredditPath, index}) => {
     const str = post.preview?.url.match(strRegEx)[1];
     const preview = `${file}?width=640&crop=smart&auto=webp&s=${str}`;
 
+    const reInitCard = () => {
+        if (!node) return null;
+        const card = {
+            id: index,
+            width: node.getBoundingClientRect().width,
+            height: node.getBoundingClientRect().height
+        }
+        !selected && dispatch(initCard(card))
+    }
+
     const [node, setRef] = useState(null);
     useEffect(() => {
         if (!node) return null;
@@ -62,15 +72,7 @@ export const Post = ({selected, post, subredditPath, index}) => {
         }
     }, [node, dispatch, index, reInitCard, selected]);
 
-    const reInitCard = () => {
-        if (!node) return null;
-        const card = {
-            id: index,
-            width: node.getBoundingClientRect().width,
-            height: node.getBoundingClientRect().height
-        }
-        !selected && dispatch(initCard(card))
-    }
+    
 
     if(!post) return <h3 className="primary">Dieser Post existiert leider nicht :-(</h3>
     return (
