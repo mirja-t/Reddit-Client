@@ -1,8 +1,7 @@
 import './post.scss';
 import React, {
     useState, 
-    useEffect,
-    useCallback
+    useEffect
 } from 'react';
 import { 
     useSelector, 
@@ -81,7 +80,7 @@ export const Post = ({selected, post, subredditPath, index}) => {
           window.removeEventListener('resize', resizeListener);
         }
 
-    },[node]);
+    },[node, dispatch, index, post.preview]);
 
     
 
