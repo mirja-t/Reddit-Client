@@ -1,0 +1,29 @@
+@import '../../../variables.scss';
+
+aside {
+    color: $primary-light;
+    flex-basis: $sidebar-width;
+    flex-shrink: 0;
+    padding: $mainpadding;
+    padding-right: calc( #{$mainpadding} - #{$cardpadding} );
+    @media screen and (min-width: $layoutswitch) {
+        height: 100%;
+    }
+    
+    .scrollcontainer {
+        height: calc( 100% - #{$headerheight} );
+        max-height: calc( 100% - #{$headerheight} );
+    }
+    header {
+        #logo{
+            width: 3.25rem;
+            height: 3.25rem;
+            background-image: url('../../../assets/img/redditminimal-icon.svg');
+            background-size: contain;
+            margin: .5rem auto;
+        }
+        text-align: center;
+        height: $headerheight;
+    }
+}
+

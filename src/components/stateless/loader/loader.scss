@@ -1,0 +1,41 @@
+@import '../../../variables.scss';
+
+#loader{
+    flex-grow: 1;
+    > div {
+        width: 100px;
+        height: 100px;
+        position: relative;
+        margin: auto;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+@keyframes flip {
+    0% {
+        transform: scale3d(1,1,1);
+        filter: brightness(100%);
+    }
+    49% {
+        transform: scale3d(0,1,1);
+        filter: brightness(150%);
+    }
+    50% {
+        transform: scale3d(0,1,1);
+        filter: brightness(10%);
+    }
+    100% {
+        transform: scale3d(1,1,1);
+        filter: brightness(100%);
+    }
+}
+svg#loaderanimation {
+    margin: 0;
+    #circle {
+        animation: 1s ease-in-out infinite flip;
+        transform-origin: 50px;
+        backface-visibility: hidden;
+        transform: translateZ(0);
+        fill: $primary-light;
+    }
+}
