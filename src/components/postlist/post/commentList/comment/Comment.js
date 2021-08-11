@@ -1,6 +1,5 @@
 import './comment.scss';
 import { formatDate } from '../../../../../utils/helperFunctions';
-import { lazy } from 'react';
 
 export const Comment = ({comment}) => {
 

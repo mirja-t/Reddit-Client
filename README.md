@@ -1,4 +1,4 @@
-![reddit minimal icon](https://github.com/mirja-t/Reddit-Client/blob/main/public/redditminimal-icon.png)
+![reddit minimal icon](https://github.com/mirja-t/Reddit-Client/blob/main/public/redditminimal-icon.png?raw=true)
 
 # Reddit minimal: Top Subreddits
 
