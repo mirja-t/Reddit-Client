@@ -28,25 +28,7 @@ body {
   width: 9px!important;
 }
 
-// ERROR
-.error{
-  text-align: center;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
 
-  > div {
-    position: absolute;
-    text-align: center;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    transform: translateY(-50%);
-  }
-}
 
 
 // STYLED SCROLLBAR

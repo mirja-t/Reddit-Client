@@ -25,6 +25,7 @@ import {
 } from './postListSlice';
 import { Post } from './post/Post.js';
 import { Loader } from '../stateless/loader/Loader';
+import { Error } from '../stateless/error/Error';
 import { 
     AnimatePresence, 
     motion 
@@ -70,8 +71,8 @@ export const PostList = () => {
         setContainerHeight(containerHght);
     },[offsetList, grid, postList.hasError, postList.isLoading]);
 
-    if(postList.isLoading) return (<Loader/>)
-    if(postList.hasError) return (<div className="error"><div><h3 className="primary">Sch***e, da kommt nix an :-(</h3></div></div>)
+    if(postList.isLoading) return <Loader/>
+    if(postList.hasError) return <Error/>
 
     return (
     <>

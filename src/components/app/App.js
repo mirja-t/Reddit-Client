@@ -2,7 +2,7 @@ import './App.scss';
 import { PostList } from '../postlist/PostList';
 import { Sidebar } from '../stateless/sidebar/Sidebar';
 
-function App() {
+export const App = () => {
   return (
     <div id="wrapper">
       <Sidebar/>
@@ -10,5 +10,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
