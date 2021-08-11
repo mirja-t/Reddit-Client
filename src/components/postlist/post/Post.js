@@ -55,7 +55,6 @@ export const Post = ({selected, post, subredditPath, index}) => {
 
     const [node, setRef] = useState(null);
     useEffect(() => {
-        console.log(post.preview)
         if (!node) return null;
         const card = {
             id: index,

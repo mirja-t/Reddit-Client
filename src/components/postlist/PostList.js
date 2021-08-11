@@ -71,7 +71,7 @@ export const PostList = () => {
     },[offsetList, grid, postList.hasError, postList.isLoading]);
 
     if(postList.isLoading) return (<Loader/>)
-    if(postList.hasError) return (<div className="error"><div><h3 className="primary">Da hat wohl jemand Rotz gecoded :-(</h3></div></div>)
+    if(postList.hasError) return (<div className="error"><div><h3 className="primary">Sch***e, da kommt nix an :-(</h3></div></div>)
 
     return (
     <>

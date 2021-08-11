@@ -23,9 +23,6 @@ main {
     flex-wrap: wrap;
     list-style-type: none;
     align-items: flex-start;
-    @media screen and (min-width: $layoutswitch){
-        padding-right: $cardbodypadding;
-    }
 
     &:after {
         content: "";

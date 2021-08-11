@@ -29,6 +29,7 @@ h5{
     font-weight: 400;
     line-height: 1.35;
 }
+
 @for $i from 1 through 6 {
     h#{$i} {
         font-size: $global-font-size + (((6 / $i) - 1) * 3px);

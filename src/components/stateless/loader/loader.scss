@@ -11,6 +11,16 @@
         transform: translateY(-50%);
     }
 }
+@media screen and (max-width: $layoutswitch-max){
+    #loader{
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+    }
+}
+
 @keyframes flip {
     0% {
         transform: scale3d(1,1,1);

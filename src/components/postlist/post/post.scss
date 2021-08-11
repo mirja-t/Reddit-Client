@@ -63,6 +63,7 @@
     }
     .card-body{
         padding: $cardbodypadding;
+        overflow-x: hidden;
         a {
             color: $primary;
             margin-bottom: 1rem;
