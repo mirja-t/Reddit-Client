@@ -1,5 +1,5 @@
 import './post.scss';
-import React, {
+import {
     useState, 
     useEffect
 } from 'react';

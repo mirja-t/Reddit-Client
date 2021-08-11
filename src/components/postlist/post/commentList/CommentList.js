@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getPostComments } from '../../../../utils/reddit';
 import {Comment } from './comment/Comment';
 import './commentList.scss';
