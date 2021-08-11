@@ -1,4 +1,5 @@
-#### Codecademy practice project:
+![reddit minimal icon](https://github.com/mirja-t/Reddit-Client/blob/main/public/redditminimal-icon.png)
+
 # Reddit minimal: Top Subreddits
 
 This project uses the [Reddit JSON API](https://github.com/reddit-archive/reddit/wiki/JSON) that doesn't require authentication.
