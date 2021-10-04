@@ -27,3 +27,14 @@ aside {
     }
 }
 
+
+
+// CUSTOM SCROLLBAR OVERWRITE
+.simplebar-scrollbar:before{
+    background: $primary!important;
+    border-radius: 0!important;
+  }
+  .simplebar-track.simplebar-vertical{
+    width: 9px!important;
+  }
+  

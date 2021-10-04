@@ -16,6 +16,7 @@ main {
     @media screen and (min-width: $layoutswitch){
         height:100%;
         overflow: scroll;
+        overflow-x: hidden;
     }
 }
 #postlist{

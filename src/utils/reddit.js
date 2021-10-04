@@ -47,7 +47,7 @@ export const getPostComments = (id, subreddit) => {
 
     const url = 'https://www.reddit.com/';
     const endpoint = `${url}${subreddit}/comments/${id}.json`;
-    
+    console.log(endpoint)
     return fetch(endpoint)
     .then(response => {
         if (response.ok) {
