@@ -1,35 +1,25 @@
 import './post.scss';
-import {
-    useState, 
-    useEffect
-} from 'react';
 import { 
-    useSelector, 
     useDispatch 
 } from 'react-redux';
 import { 
     motion 
 } from "framer-motion";
 import { buttonTransition } from '../../app/transitions';
-import { debounce } from '../../../utils/debounce.js';
 import { CommentList } from './commentList/CommentList';
 import { 
-    getOffsets,
     setSelectedId 
 } from '../postListSlice';
-import { initCard } from '../postListSlice';
 import { 
     formatNumber, 
     formatDate, 
     shortenTitle 
 } from '../../../utils/helperFunctions';
 
-export const Post = ({selected, post, subredditPath, index}) => {
+export const Post = ({additional: {selected, subredditPath}, item: post}) => {
 
     const dispatch = useDispatch();
 
-    const offsets = useSelector(getOffsets);
-    const cardClasses = selected ? 'card card-selected' : 'card';
     const num_comments = post.num_comments;
     const upvotes = post.ups;
     const postTitle = post.title ? post.title : '';
@@ -42,54 +32,11 @@ export const Post = ({selected, post, subredditPath, index}) => {
     const file = post.preview?.url.match(fileRegEx)[1];
     const str = post.preview?.url.match(strRegEx)[1];
     const preview = `${file}?width=640&crop=smart&auto=webp&s=${str}`;
-
-    const reInitCard = () => {
-        if (!node) return null;
-        const card = {
-            id: index,
-            width: node.getBoundingClientRect().width,
-            height: node.getBoundingClientRect().height
-        }
-        !selected && dispatch(initCard(card))
-    }
-
-    const [node, setRef] = useState(null);
-    useEffect(() => {
-        if (!node) return null;
-        const card = {
-            id: index,
-            width: node.getBoundingClientRect().width,
-            height: node.getBoundingClientRect().height
-        }
-        !selected && dispatch(initCard(card));
-        const resizeListener = debounce(()=>{
-            if (!node) return null;
-            const card = {
-                id: index,
-                width: node.getBoundingClientRect().width,
-                height: node.getBoundingClientRect().height
-            }
-            !selected && dispatch(initCard(card))
-        }, 500);
-        // set resize listener
-        window.addEventListener('resize', resizeListener);
-        // clean up function
-        return () => {
-          // remove resize listener
-          window.removeEventListener('resize', resizeListener);
-        }
-
-    },[node, dispatch, index, post.preview, selected]);
-
     
 
     if(!post) return <h3 className="primary">Dieser Post existiert leider nicht :-(</h3>
-    return (
-    <li 
-        className={cardClasses} 
-        onClick={() => { !selected && dispatch(setSelectedId(post.id))}} 
-        ref={setRef} 
-        style={{ 'transform': `translateY(-${ offsets[index]?.translateY || 0 }px)` }} >
+    return (<>
+    
         {selected &&     (<motion.button 
                             onClick={() => {dispatch(setSelectedId(null))}} 
                             className="btn-close"
@@ -110,8 +57,7 @@ export const Post = ({selected, post, subredditPath, index}) => {
                         poster={post.thumbnail} 
                         controls 
                         width={post.video_width} 
-                        height={post.video_height}
-                        onLoadedData={reInitCard}>
+                        height={post.video_height}>
                         <source src={post.video_url}/>
                         Sorry, your browser doesn't support this video format.
                     </video>
@@ -121,8 +67,7 @@ export const Post = ({selected, post, subredditPath, index}) => {
                         src={ post.preview ? preview : post.url } 
                         width={post.img_width} 
                         height={post.img_height} 
-                        alt=""
-                        onLoad={reInitCard}/>
+                        alt=""/>
                 )}
                 
                 <div className='card-body'>
@@ -143,5 +88,5 @@ export const Post = ({selected, post, subredditPath, index}) => {
                 {selected && ( <CommentList postId={post.id} subredditPath={subredditPath} />)}
             </div>
         </div>
-    </li>)
+    </>)
 }

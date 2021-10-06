@@ -1,9 +1,7 @@
 
 import './postList.scss';
 import {
-    useRef, 
-    useEffect, 
-    useState
+    useEffect
 } from 'react';
 import { 
     useSelector, 
@@ -18,10 +16,7 @@ import {
     getSelectedId
 } from './postListSlice';
 import { 
-    selectGrid, 
-    resetGrid, 
-    setOffsets,
-    getOffsets 
+    setSelectedId
 } from './postListSlice';
 import { Post } from './post/Post.js';
 import { Loader } from '../stateless/loader/Loader';
@@ -35,9 +30,8 @@ import {
     bgTransition
 } from '../app/transitions';
 import {
-    translateCards,
-    setHeight
-} from '../../utils/grid/grid';
+    MasonryGrid
+} from '../stateless/masonryGrid/MasonryGrid';
 
 export const PostList = () => {
 
@@ -45,31 +39,17 @@ export const PostList = () => {
     const subreddit = useSelector(selectSubreddit);
     const selectedId = useSelector(getSelectedId);
     const postList = useSelector(selectPosts);
-    const offsetList = useSelector(getOffsets);
 
     const posts = postList.posts;
     const selectedPost = posts.find(post => post.id === selectedId);
-    const gridContainer = useRef(null);
-    const [containerHeight, setContainerHeight] = useState(null);
 
-    const grid = useSelector(selectGrid);
-
+    const handleClick = post => {
+        !selectedId && dispatch(setSelectedId(post.id));
+    }
+    
     useEffect(() => {
         dispatch(loadPosts(subreddit));
-        dispatch(resetGrid)
     }, [subreddit, dispatch]);
-
-    useEffect(() => {
-        if(grid.length <= 0 || postList.isLoading || postList.hasError) return
-        const offsets = translateCards(gridContainer.current, grid)
-        dispatch(setOffsets(offsets));
-    }, [grid, dispatch, postList.hasError, postList.isLoading]);
-
-    useEffect(()=>{
-        if(grid.length <= 0 || postList.isLoading || postList.hasError) return
-        const containerHght = setHeight(gridContainer.current, grid);
-        setContainerHeight(containerHght);
-    },[offsetList, grid, postList.hasError, postList.isLoading]);
 
     if(postList.isLoading) return <Loader/>
     if(postList.hasError) return <Error/>
@@ -88,32 +68,31 @@ export const PostList = () => {
                         initial={'initial'}
                         animate={'animate'}
                         exit={'exit'}
-                        transition={'transition'}
-                        >
-                        <Post 
-                            post={selectedPost} 
-                            subredditPath={subreddit}
-                            selected={true}/>
+                        transition={'transition'}>
+                            <li className="card card card-selected">
+                                <Post 
+                                    item={selectedPost} 
+                                    additional={{
+                                        subredditPath: subreddit,
+                                        selected: true
+                                    }}/>
+                            </li>
                     </motion.ul>
                 )}
             </AnimatePresence>
             
             <div id="postlist-wrapper">
-                    <ul id="postlist" ref={gridContainer} style={{height: containerHeight}}>
-                        {posts.map((post, index) => (
-                            
-                            <Post 
-                                post={post} 
-                                key={post.id} 
-                                index={index}
-                                selected={false} />
-                            )
-                        )}
-                    </ul>
+                <MasonryGrid 
+                    id="postlist" 
+                    items={posts}
+                    fn={handleClick}
+                    additional={{
+                        selected: false, 
+                        subredditPath: subreddit
+                    }}>
+                    <Post/>
+                </MasonryGrid>
             </div>
-            
-            
-            
         </main>
 
         <AnimatePresence>

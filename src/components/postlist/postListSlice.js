@@ -14,22 +14,11 @@ export const postListSlice = createSlice({
   name: "postList",
   initialState: {
     posts: [],
-    grid: [],
-    offsets: [],
     selectedId: null,
     isLoading: false,
     hasError: false
   },
   reducers: {
-    resetGrid: (state) => {
-      state.grid = []
-    },
-    initCard: (state, action) => {
-      state.grid[action.payload.id] = action.payload;
-    },
-    setOffsets: (state, action) => {
-      state.offsets = [...action.payload]
-    },
     setSelectedId: (state, action) => {
       state.selectedId = action.payload;
     }
@@ -52,14 +41,9 @@ export const postListSlice = createSlice({
 });
   
 export const selectPosts = (state) => state.postList;
-export const selectGrid = (state) => state.postList.grid;
-export const getOffsets = (state) => state.postList.offsets;
 export const getSelectedId = (state) => state.postList.selectedId;
 
 export const {
-  resetGrid,
-  initCard,
-  setOffsets,
   setSelectedId
 } = postListSlice.actions;
 
