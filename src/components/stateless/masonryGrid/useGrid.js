@@ -40,7 +40,7 @@ const setOffsets = (el, list) => {
     }
     return offsets
 }
-
+/*
 const getContainerHeight = (el, gridItems) => {
 
     const cols = getCols(el, gridItems);
@@ -58,7 +58,7 @@ const getContainerHeight = (el, gridItems) => {
 
     if (colheights.length < 1) return 'auto';
     return Math.max(...colheights);
-}
+}*/
 
 /**
  * 
