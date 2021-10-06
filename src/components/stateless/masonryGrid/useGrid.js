@@ -98,8 +98,8 @@ export const useGrid = (el, list) => {
     },[el, list]);
 
     useEffect(() => {
-        const height = getContainerHeight(el, grid);
-        setContainerHeight(height);
+        //const height = getContainerHeight(el, grid);
+        setContainerHeight('auto');
     }, [el, grid]);
 
     return {
