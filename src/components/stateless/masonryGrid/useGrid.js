@@ -40,7 +40,7 @@ const setOffsets = (el, list) => {
     }
     return offsets
 }
-/*
+
 const getContainerHeight = (el, gridItems) => {
 
     const cols = getCols(el, gridItems);
@@ -58,7 +58,7 @@ const getContainerHeight = (el, gridItems) => {
 
     if (colheights.length < 1) return 'auto';
     return Math.max(...colheights);
-}*/
+}
 
 /**
  * 
@@ -87,6 +87,8 @@ export const useGrid = (el, list) => {
             });
             const offsets = setOffsets(el, gridItems);
             setGrid(offsets);
+            const height = getContainerHeight(el, gridItems);
+            setContainerHeight(height);
         });
           
         list.forEach(item => {resizeObserver.observe(item)});
@@ -96,11 +98,6 @@ export const useGrid = (el, list) => {
         }
 
     },[el, list]);
-
-    useEffect(() => {
-        //const height = getContainerHeight(el, grid);
-        setContainerHeight('auto');
-    }, [el, grid]);
 
     return {
         grid, 
