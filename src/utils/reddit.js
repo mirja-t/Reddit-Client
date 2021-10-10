@@ -58,14 +58,16 @@ export const getPostComments = (id, subreddit) => {
         const comments = jsonResponse[1].data.children;
         
         if (!comments[0]) return []
-
+        //return comments;
         return comments.map(obj => {
             const comment = obj.data;
+            
             return {
                 id: comment.id,
                 author: comment.author,
                 body: comment.body,
-                created_utc: comment.created_utc
+                created_utc: comment.created_utc,
+                replies: comment?.replies
             }
         })
     })

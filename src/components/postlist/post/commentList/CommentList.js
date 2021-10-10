@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getPostComments } from '../../../../utils/reddit';
-import {Comment } from './comment/Comment';
+import { Comment } from './comment/Comment';
 import './commentList.scss';
 
 export const CommentList = ({postId, subredditPath}) => {
@@ -8,7 +8,7 @@ export const CommentList = ({postId, subredditPath}) => {
 
     const getComments = (id, subredditPath) => {
         getPostComments(id, subredditPath).then(response => {
-            setComments(response)
+            setComments(response);
         })
     }
 
