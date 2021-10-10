@@ -13,22 +13,15 @@ main {
     }
 }
 #postlist-wrapper {
+    box-sizing: content-box;
     @media screen and (min-width: $layoutswitch){
         height:100%;
         overflow: scroll;
         overflow-x: hidden;
     }
 }
-#postlist{
-    display: flex;
-    flex-wrap: wrap;
-    list-style-type: none;
-    align-items: flex-start;
-
-    &:after {
-        content: "";
-        flex: auto;
-      }
+#postlist {
+    overflow: hidden;
 }
 .card-container{
     z-index: 10;

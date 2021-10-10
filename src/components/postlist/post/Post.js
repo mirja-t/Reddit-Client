@@ -16,7 +16,7 @@ import {
     shortenTitle 
 } from '../../../utils/helperFunctions';
 
-export const Post = ({additional: {selected, subredditPath}, item: post}) => {
+export const Post = ({additional: {selected, subredditPath, fn}, item: post}) => {
 
     const dispatch = useDispatch();
 
@@ -47,11 +47,11 @@ export const Post = ({additional: {selected, subredditPath}, item: post}) => {
                                 <line id="close-btn-stroke2" x1="2.78" y1="2.78" x2="17.22" y2="17.22"/>
                             </svg>
                         </motion.button>)}
-        <div 
-            className="card-details" 
+        <div onClick={()=>{ !selected && fn(post) }}
+            className="card" 
             title={'show details: ' + shortenTitle(postTitle, 20)} >
             
-            <div>
+            <div className="card-details">
                 { post.video_url && (
                     <video 
                         poster={post.thumbnail} 

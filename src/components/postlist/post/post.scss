@@ -4,15 +4,16 @@
 .card{
     cursor: pointer;
     transition: all .5s ease;
-    padding: 0 $cardpadding $cardpadding*2;
     position: relative;
     z-index: 2;
     color: $black;
+    background: $white;
     transition: width .5s ease, height .5s ease;
     width: 100%;
     &::marker{
         content:'';
     }
+    /*
     @media screen and (min-width: $breakpoint-xsmall){
         width: 50%;
     }
@@ -27,10 +28,7 @@
     }
     @media screen and (min-width: $breakpoint-xxxlarge){
         width: 12.5%;
-    }
-    &:hover:not(.card-selected) {
-        z-index: 3;
-    }
+    }*/
 
     &.card-selected {
         padding: 0;
@@ -38,6 +36,7 @@
         width: 100%;
 
     }
+    
     .card-details {
         position: relative;
         color: $black;
@@ -45,15 +44,7 @@
         display: block;
         background-color: $white;
         transition: all .1s ease;
-    }
-    
-    &:hover:not(.card-selected) {
-
-        .card-details {
-            transform: scale(1.015);
-            box-shadow: 0px 0px 20px rgba(0,0,0,.85);
-            transition: all .1s ease;
-        }
+        transform: scale(1);
     }
     
     img,
@@ -107,6 +98,22 @@
     }
 }
 
+:not(.card-selected) .card {
+    z-index: 3;
+}
+    
+:not(.card-selected) .card:hover {
+
+    .card-details {
+        transform: scale(1.015);
+        box-shadow: 0px 0px 20px rgba(0,0,0,.85);
+        transition: all .1s ease;
+    }
+}
+.card-selected .card:hover .card-details {
+    transform: scale(1);
+    cursor: default;
+}
 
 
 .btn-close{

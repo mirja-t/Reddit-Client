@@ -18,7 +18,9 @@ import {
 import { 
     setSelectedId
 } from './postListSlice';
-import { Post } from './post/Post.js';
+import { 
+    Post
+} from './post/Post.js';
 import { Loader } from '../stateless/loader/Loader';
 import { Error } from '../stateless/error/Error';
 import { 
@@ -31,7 +33,7 @@ import {
 } from '../app/transitions';
 import {
     MasonryGrid
-} from '../stateless/masonryGrid/MasonryGrid';
+} from '@offensichtbar-codestock/react-flex-masonry-grid';
 
 export const PostList = () => {
 
@@ -69,7 +71,7 @@ export const PostList = () => {
                         animate={'animate'}
                         exit={'exit'}
                         transition={'transition'}>
-                            <li className="card card card-selected">
+                            <li className="card-selected">
                                 <Post 
                                     item={selectedPost} 
                                     additional={{
@@ -85,8 +87,12 @@ export const PostList = () => {
                 <MasonryGrid 
                     id="postlist" 
                     items={posts}
-                    fn={handleClick}
+                    config={{
+                        gap: '5px',
+                        flexbasis: '250px'
+                    }}
                     additional={{
+                        fn: handleClick,
                         selected: false, 
                         subredditPath: subreddit
                     }}>
