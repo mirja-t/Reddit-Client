@@ -1,0 +1,59 @@
+@import '../../variables.scss';
+
+
+form#search {
+    margin: 0 auto 2rem auto;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    max-width: 190px;
+    padding-left: $inputHeight;
+
+    input {
+        border-color: transparent;
+        background: $primary-light;
+        position: relative;
+        height: $inputHeight;
+        display: block;
+        position: relative;
+        z-index: 2;
+    }
+    input[name="subreddit"]{
+        flex-grow: 1;
+        background-color: transparent;
+        color: black;
+        max-width: 110px;
+        &:focus {
+            outline: 2px solid transparent;
+            background: $white;
+        }
+    }
+    input[type="submit"]{
+        width: $inputHeight;
+        border-radius: 0 50% 50% 0;
+        flex-shrink: 0;
+        cursor: pointer;
+        background: $primary-light url('../../assets/img/icon-search.svg') no-repeat center center;
+        background-size: 50%;
+    }
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        background: $primary-light;
+        height: $inputHeight;
+        width: $inputHeight;
+    }
+    &::before {
+        border-radius: 50% 0 0 50%;
+        left: 0;
+        background: $primary-light url('../../assets/img/favicon.svg') no-repeat 15px center;
+        background-size: 40%;
+    }
+    &::after {
+        background: $primary-light;
+        height: $inputHeight;
+        width: calc( 100% - #{ $inputHeight * 2 } );
+        left: $inputHeight;
+    }
+}

@@ -1,8 +1,5 @@
 
 import './postList.scss';
-import {
-    useEffect
-} from 'react';
 import { 
     useSelector, 
     useDispatch 
@@ -12,7 +9,6 @@ import {
 } from '../app/AppSlice';
 import { 
     selectPosts,
-    loadPosts,
     getSelectedId
 } from './postListSlice';
 import { 
@@ -48,10 +44,6 @@ export const PostList = () => {
     const handleClick = post => {
         !selectedId && dispatch(setSelectedId(post.id));
     }
-    
-    useEffect(() => {
-        dispatch(loadPosts(subreddit));
-    }, [subreddit, dispatch]);
 
     if(postList.isLoading) return <Loader/>
     if(postList.hasError) return <Error/>
