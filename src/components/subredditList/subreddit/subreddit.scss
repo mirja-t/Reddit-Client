@@ -2,7 +2,7 @@
 
 .subredditlist {
     li {
-        //background-color: $primary-light;
+        
         color: $secondary;
         &:last-child{
             border-bottom: none;
@@ -103,6 +103,7 @@
 
     
     @media (max-width: $layoutswitch-max){
+        background-color: $primary-light;
         li {
             background-color: $primary-light;
             height: 3rem;

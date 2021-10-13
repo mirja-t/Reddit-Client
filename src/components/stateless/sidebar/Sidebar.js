@@ -1,10 +1,11 @@
-import SimpleBar from 'simplebar-react';
-import '../../../../node_modules/simplebar/dist/simplebar.min.css';
+import { useState } from 'react';
+import { ScrollContent } from '../scrollcontent/ScrollContent';
 import { SubredditList } from '../../subredditList/SubredditList';
+import { Search } from '../../search/Search';
 import './sidebar.scss';
 
 export const Sidebar = () => {
-    
+    const [parentEl, setParentEl] = useState(null);
     return (
       
       <aside>
@@ -12,11 +13,13 @@ export const Sidebar = () => {
           <div id="logo"></div>
           <h2>Subreddit</h2>
           <h5>minimal</h5>
+          <Search/>
         </header>
-        <div className="scrollcontainer">
-          <SimpleBar style={{ maxHeight: '95%' }}>
+        <div className="scrollcontainer" ref={setParentEl}>
+          <ScrollContent 
+            parentEl={parentEl}>
             <SubredditList/>
-          </SimpleBar>
+          </ScrollContent>
         </div>
       </aside>
     );

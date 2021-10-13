@@ -2,7 +2,6 @@
 
 .subredditlist {
     @media (min-width: $layoutswitch){
-        padding-right: $mainpadding;
         height: auto!important;
     }
     @media (max-width: $layoutswitch-max){

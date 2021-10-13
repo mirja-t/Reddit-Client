@@ -1,0 +1,33 @@
+@import '../../../variables.scss';
+
+$scrollbarWidth: 4px;
+
+.scrollcontent-wrapper {
+    position: relative;
+    .scrollcontent {
+        overflow: hidden;    
+        > div {
+            overflow: hidden;
+            
+            > div {
+                height: auto;
+            }
+        }
+    }
+    .scroll {
+        padding-right: $scrollbarWidth * 4;
+        overflow-y: scroll !important;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+    .scrollbar {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: $scrollbarWidth;
+        opacity: .5;
+        background: $primary;
+        height: 100%;
+    }
+}

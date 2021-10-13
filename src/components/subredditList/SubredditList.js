@@ -1,10 +1,13 @@
 
 
 import './subredditList.scss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectSubreddit } from '../app/AppSlice';
 import { Subreddit } from './subreddit/Subreddit.js';
+import { useDispatch } from 'react-redux';
+import { setSubreddit } from '../app/AppSlice';
+import { loadPosts } from '../postlist/postListSlice';
 
 export const SubredditList = () => {
 
@@ -27,6 +30,12 @@ export const SubredditList = () => {
     const toggle = () => {
       setOpen(prev => !prev)
     }
+
+    const dispatch = useDispatch();
+    useEffect(()=>{
+        dispatch(setSubreddit('r/DesignPorn'));
+        dispatch(loadPosts('r/DesignPorn'));
+    },[dispatch]);
     
     return (
       <ul 
