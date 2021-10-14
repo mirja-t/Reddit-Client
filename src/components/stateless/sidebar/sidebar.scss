@@ -8,11 +8,10 @@ aside {
     padding-right: calc( #{$mainpadding} - #{$cardpadding} );
     @media screen and (min-width: $layoutswitch) {
         height: 100%;
-    }
-    
-    .scrollcontainer {
-        height: calc( 100% - #{$headerheight} );
-        max-height: calc( 100% - #{$headerheight} );
+        .scrollcontainer {
+            height: calc( 100% - #{$headerheight} );
+            max-height: calc( 100% - #{$headerheight} );
+        }
     }
 
     header {
@@ -28,14 +27,11 @@ aside {
     }
 }
 
+@media (max-width: $layoutswitch-max){
+    .scrollcontent-wrapper,
+    .scrollcontent-wrapper .scrollcontent {
+        height: auto!important;
+    }
+}
 
-
-// CUSTOM SCROLLBAR OVERWRITE
-.simplebar-scrollbar:before{
-    background: $primary!important;
-    border-radius: 0!important;
-  }
-  .simplebar-track.simplebar-vertical{
-    width: 9px!important;
-  }
   
