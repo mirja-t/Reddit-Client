@@ -81,7 +81,7 @@ export const PostList = () => {
                     items={posts}
                     config={{
                         gap: '5px',
-                        flexbasis: '250px'
+                        flexbasis: '260px'
                     }}
                     additional={{
                         fn: handleClick,
