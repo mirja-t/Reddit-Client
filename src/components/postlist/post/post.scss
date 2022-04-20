@@ -13,22 +13,6 @@
     &::marker{
         content:'';
     }
-    /*
-    @media screen and (min-width: $breakpoint-xsmall){
-        width: 50%;
-    }
-    @media screen and (min-width: $breakpoint-small){
-        width: 33.332%;
-    }
-    @media screen and (min-width: $breakpoint-large){
-        width: 25%;
-    }
-    @media screen and (min-width: $breakpoint-xxlarge){
-        width: 20%;
-    }
-    @media screen and (min-width: $breakpoint-xxxlarge){
-        width: 12.5%;
-    }*/
 
     &.card-selected {
         padding: 0;
@@ -98,23 +82,26 @@
     }
 }
 
-:not(.card-selected) .card {
+li:not(.card-selected) .card {
     z-index: 3;
-}
-    
-:not(.card-selected) .card:hover {
+    .title {
+        max-width: 16ch;
+        word-wrap: break-word;
+    }
+    &:hover {
 
-    .card-details {
-        transform: scale(1.015);
-        box-shadow: 0px 0px 20px rgba(0,0,0,.85);
-        transition: all .1s ease;
+        .card-details {
+            transform: scale(1.015);
+            box-shadow: 0px 0px 20px rgba(0,0,0,.85);
+            transition: all .1s ease;
+        }
     }
 }
+    
 .card-selected .card:hover .card-details {
     transform: scale(1);
     cursor: default;
 }
-
 
 .btn-close{
     width: 70px;
