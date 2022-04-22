@@ -14,3 +14,6 @@ The subreddit list layout uses a flex masonry grid. While pure css masonry grids
 Uses [Framer motion](https://www.framer.com/motion/) for a smooth transition of the post details 
 #### – Simplebar
 Uses [SimplebarReact](https://www.npmjs.com/package/simplebar-react) for a custom scrollbar in the subreddit navigtion
+
+## Live site
+[redditminimal top subreddits](https://redditminimal-topsubreddits.netlify.app/)
